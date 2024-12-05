@@ -2,6 +2,7 @@ import os
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 import pygame
 from constants import *
+from player import Player
 
 def main():
     pygame.init()
@@ -10,11 +11,15 @@ def main():
     global dt
     dt = 0
 
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill(color=(0, 0, 0))
+        player.draw(screen)
+        player.update(dt)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
