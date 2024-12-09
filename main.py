@@ -35,6 +35,11 @@ def main():
         for u in updatable:
             u.update(dt)
         pygame.display.flip()
+        
+        for a in asteroids:
+            if(a.is_in_collision(player)):
+                print("Game Over!")
+                pygame.quit()
         dt = clock.tick(60) / 1000
 
 if __name__ == "__main__":

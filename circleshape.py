@@ -1,7 +1,11 @@
 import pygame
+from typing import ClassVar
 
 class CircleShape(pygame.sprite.Sprite):
-    def __init__(self, x, y, radius):
+    position: ClassVar[pygame.Vector2]
+    velocity: ClassVar[pygame.Vector2]
+
+    def __init__(self, x, y, radius) -> None:
         if hasattr(self, "containers"):
             super().__init__(self.containers)
         else:
@@ -16,3 +20,7 @@ class CircleShape(pygame.sprite.Sprite):
 
     def update(self, dt):
         pass
+
+    def is_in_collision(self, other) -> bool:
+        distance_between = self.position.distance_to(other.position)
+        return distance_between < self.radius + other.radius
