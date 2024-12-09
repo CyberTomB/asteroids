@@ -43,7 +43,7 @@ def main():
             for s in shots:
                 if(a.is_in_collision(s)):
                     s.kill()
-                    a.kill()
+                    a.split()
             if(a.is_in_collision(player)):
                 print("Game Over!")
                 pygame.quit()
